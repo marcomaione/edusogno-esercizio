@@ -1,7 +1,7 @@
 <?php
 require_once('database.php');
 
-var_dump($_POST);
+// var_dump($_POST);
 
 if (isset($_POST['registrati'])) {
     $nome = $_POST['nome'] ?? '';
@@ -25,28 +25,25 @@ if (isset($_POST['registrati'])) {
         echo "QUERY:".$query;
         
         $check = $pdo->prepare($query);
-        // $check->bindParam(':nome', $email, PDO::PARAM_STR);
         $check->execute();
         
         $user = $check->fetchAll(PDO::FETCH_ASSOC);
         
         if (count($user) > 0) {
-            $msg = 'Username già in uso %s';
+            $msg = 'email già in uso ';
+
         } else {
-            // $query = "INSERT INTO utenti VALUES (0, '" . $email . "', '". $password . "')";
             $query = "INSERT INTO `utenti`(`id`, `nome`, `cognome`, `email`, `password`) VALUES (0, '" . $nome . "', '" . $cognome . "', '" . $email . "', '" . $password_hash ."')";
             $check = $pdo->prepare($query);
-            // $check->bindParam(':email', $email, PDO::PARAM_STR);
-            // $check->bindParam(':password', $password_hash, PDO::PARAM_STR);
             $check->execute();
             
             if ($check->rowCount() > 0) {
-                $msg = 'Registrazione eseguita con successo';
+                printf($msg = 'Registrazione eseguita con successo');
             } else {
-                $msg = 'Problemi con l\'inserimento dei dati %s';
+                printf($msg = 'Problemi con l\'inserimento dei dati <a href="registrati.html">torna indietro</a>');
             }
         }
     }
     
-    printf($msg, '<a href="../registrati.html">torna indietro</a>');
+    // printf($msg, '<a href="registrati.html">torna indietro</a>');
 }
