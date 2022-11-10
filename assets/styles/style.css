@@ -16,6 +16,23 @@
     align-items: center;
 }
 
+.center {
+    
+    width: 80%;
+    margin: 0 auto;
+    height: 200px;
+    display: flex;
+    justify-content: space-between;
+
+
+}
+.event {
+    margin-top: 50px;
+    min-width: 30%;
+    min-height: 150px;
+    border-radius: 10px;
+    border: solid 1px red;
+}
 .container img {
     max-width: 150px;
     margin-left: 50px;

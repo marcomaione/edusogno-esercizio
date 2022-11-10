@@ -8,7 +8,7 @@ $config = [
 ];
 
 $db_config = $config['db_engine'] . ":host=".$config['db_host'] . ";dbname=" . $config['db_name'];
-
+// mi collego al database e verifico che non ci nsiano errori
 try {
     $pdo = new PDO($db_config, $config['db_user'], $config['db_password'], [
         PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"

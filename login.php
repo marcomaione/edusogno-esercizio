@@ -7,7 +7,7 @@ if (isset($_POST['login'])) {
     $password = $_POST['password'] ?? '';
     
     if (empty($email) || empty($password)) {
-        $msg = 'Inserisci username e password ';
+        printf($msg = 'Inserisci username e password ');
     } else {
         $query = " SELECT email, password FROM utenti WHERE email = :email";
         
@@ -20,7 +20,7 @@ if (isset($_POST['login'])) {
         if (!$user || password_verify($password, $user['password']) === false) {
             printf($msg = 'Credenziali utente errate <a href="login.html">torna indietro</a>');
         } else {
-            printf("Benvenuto");
+            header("location:./personale.php");
         }
     }
 }
