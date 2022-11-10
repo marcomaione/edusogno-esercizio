@@ -20,6 +20,7 @@ if (isset($_POST['login'])) {
         if (!$user || password_verify($password, $user['password']) === false) {
             printf($msg = 'Credenziali utente errate <a href="login.html">torna indietro</a>');
         } else {
+            
             header("location:./personale.php");
         }
     }

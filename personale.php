@@ -1,3 +1,10 @@
+<?php
+require_once('database.php');
+$query = "SELECT * FROM eventi";
+echo "QUERY:".$query;
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +22,7 @@
     </header>
     <h1>Ciao ecco i tuoi eventi</h1>
     <div class="center">
+        
         <div class="event"></div>
         <div class="event"></div>
         <div class="event"></div>
