@@ -1,7 +1,15 @@
 <?php
 require_once('database.php');
-$query = "SELECT * FROM eventi";
-echo "QUERY:".$query;
+$conn = mysqli_connect('localhost', 'root', 'root', 'edusogno' );
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+//   } else {
+//     echo "ci sei riuscito";
+//   }
+
+  $sql = "SELECT id, nome_evento, data_evento FROM eventi";
+  $result = mysqli_query($conn, $sql);
 ?>
 
 
@@ -22,10 +30,24 @@ echo "QUERY:".$query;
     </header>
     <h1>Ciao ecco i tuoi eventi</h1>
     <div class="center">
+        <?php
+        if (mysqli_num_rows($result) > 0) {
+            // output data of each row
+            while($row = mysqli_fetch_assoc($result)) {
+            //   echo "id: " . $row["id"]. " - nome_evento: " . $row["nome_evento"]. " - data_evento" . $row["data_evento"]. "<br>";
+              echo '<div class= event">
+
+                        <h1>'. $row["nome_evento"].'</h1> 
+                        <h6>'. $row["data_evento"].'</h6> 
         
-        <div class="event"></div>
-        <div class="event"></div>
-        <div class="event"></div>
+                    </div>';
+            }
+          } else {
+            echo "0 results";
+          }
+          
+          mysqli_close($conn);
+        ?>
     </div>
 </body>
 </html>
